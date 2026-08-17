@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: redis:alpine
+    networks:
+      - rede
+
+  webapp:
+    build: .
+    volumes:
+      - ./app:/app
+    deploy:
+      replicas: 3
+    ports:
+      - 5000
+    networks:
+      - rede
+
+
+  caddy:
+    image: caddy:alpine
+    ports:
+      - 4000:4000
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    networks:
+      - rede
+
+networks:
+    rede:

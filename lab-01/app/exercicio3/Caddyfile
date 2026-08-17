@@ -1,0 +1,10 @@
+:4000 {
+    reverse_proxy {
+        dynamic a {
+            name webapp
+            port 5000
+            refresh 1s
+        }
+        lb_policy round_robin
+    }
+}
