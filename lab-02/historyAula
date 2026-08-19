@@ -1,0 +1,110 @@
+    1  git config --global user.name "vini-bs13"
+    2  git config --global user.email "viniprogramador13@gmail.com"
+    3  git clone https://github.com/vini-bs13/Seguranca
+    4  ls
+    5  cd Seguranca/
+    6  ls
+    7  mkdir lab-02
+    8  cd lab-0
+    9  cd lab-02
+   10  mkdir simetrica
+   11  cd simetrica/
+   12  ls
+   13  ls -lh
+   14  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado
+   15  openssl rand -base64 32 > chave.txt
+   16  cat chave.txt 
+   17  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -pbkdf2
+   18  ls
+   19  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -pbkdf2 
+   20  ls
+   21  ls -l
+   22  md5sum *
+   23  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -pbkdf2 -k batatinha123
+   24  ls -l
+   25  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -pbkdf2
+   26  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -iter 1000 -pass file:chave.txt 
+   27  cd ..
+   28  mkdir assimetrica
+   29  cd assimetrica/
+   30  ls -l ../simetrica/
+   31  clear
+   32  openssl genrsa -out chave.priv 2048
+   33  cat chave.priv 
+   34  openssl rsa -in chave.priv -pubout -out chave.pub
+   35  ls -l
+   36  cat chave.pub 
+   37  cp ../simetrica/seg-criptografia.pdf .
+   38  openssl dgst -sha256 -sign chave.priv -out assinatura.sig seg-criptografia.pdf 
+   39  ls -l
+   40  cat assinatura.sig 
+   41* 
+   42  ls -lh
+   43  openssl rand -base64 32 > chave.txt
+   44  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -iter 1000 -pass file:chave.txt 
+   45  ls -l
+   46  ls chave.pub
+   47  openssl pkeyutl -encrypt -pubin -inkey chave.pub -in chave.txt -out chave.cifrada
+   48  mkdir amigo
+   49  cd amigo/
+   50  cp ../arquivo.cifrado .
+   51  cp ../chave.cifrada .
+   52  cp ../chave.priv .
+   53  ls -l
+   54  openssl pkeyutl -decrypt -inkey chave.priv -in chave.cifrada -out chave.txt
+   55  ls
+   56  cat chave.txt
+   57  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -iter 1000 -pass file:chave.txt
+   58  ls
+   59  cat slides.pdf 
+   60  1;1;120;120;1;0x
+   61  clear
+   62  ls
+   63  md5sum *
+   64  md5sum ../seg-criptografia.pdf 
+   65  ls
+   66  cd ..
+   67  ls
+   68  cd ..
+   69  ls
+   70  touch README.md
+   71  ls
+   72  mkdir exercicio1.1
+   73  ls
+   74  cd exercicio1.1/
+   75  cp ../simetrica/seg-criptografia.pdf 
+   76  cp ../simetrica/seg-criptografia.pdf .
+   77  ls
+   78  openssl rand -base64 256 > chave.txt
+   79  ls
+   80  openssl rand -base64 32 > chave.txt
+   81  cat chave.txt 
+   82  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -iter 1000 -pass file:chave.txt
+   83  ls
+   84  cat arquivo.cifrado 
+   85  65;1;9c65;1;9c
+   86  clear
+   87  ls -lh
+   88  ls
+   89  mkdir recebido
+   90  cd recebido/
+   91  cd ..
+   92  mkdir envio
+   93  ls
+   94  cd recebido/
+   95  ls
+   96  cd envio/
+   97  ls
+   98  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -iter 1000 -pass file:chave.txt
+   99  ]
+  100  ls -lh
+  101  md5sum *
+  102  md5sum ../../seg-criptografia.pdf 
+  103  cd ..
+  104  ls
+  105  touch history.txt
+  106  history > history.txt 
+  107  cd ..
+  108  ls
+  109  touch historyAula
+  110  history > historyAula 

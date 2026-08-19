@@ -1,0 +1,35 @@
+   72  mkdir exercicio1.1
+   73  ls
+   74  cd exercicio1.1/
+   75  cp ../simetrica/seg-criptografia.pdf 
+   76  cp ../simetrica/seg-criptografia.pdf .
+   77  ls
+   78  openssl rand -base64 256 > chave.txt
+   79  ls
+   80  openssl rand -base64 32 > chave.txt
+   81  cat chave.txt 
+   82  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -iter 1000 -pass file:chave.txt
+   83  ls
+   84  cat arquivo.cifrado 
+   85  65;1;9c65;1;9c
+   86  clear
+   87  ls -lh
+   88  ls
+   89  mkdir recebido
+   90  cd recebido/
+   91  cd ..
+   92  mkdir envio
+   93  ls
+   94  cd recebido/
+   95  ls
+   96  cd envio/
+   97  ls
+   98  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -iter 1000 -pass file:chave.txt
+   99  ]
+  100  ls -lh
+  101  md5sum *
+  102  md5sum ../../seg-criptografia.pdf 
+  103  cd ..
+  104  ls
+  105  touch history.txt
+  106  history > history.txt 
