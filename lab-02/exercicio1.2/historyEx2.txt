@@ -1,0 +1,19 @@
+   75  openssl rand -base64 32 > chave.txt
+   76  openssl genrsa -out chave.priv 2048
+   77  openssl rsa -in chave.priv -pubout -out chave.pub
+   78  openssl dgst -sha256 -sign chave.priv -out assinatura.sig seg-criptografia.pdf 
+   79  openssl enc -aes-256-cbc -in seg-criptografia.pdf -out arquivo.cifrado -iter 1000 -pass file:chave.txt 
+   80  openssl pkeyutl -encrypt -pubin -inkey chave.pub -in chave.txt -out chave.cifrada
+   81  cd amigo/
+   82  cp ../arquivo.cifrado .
+   83  cp ../chave.cifrada .
+   84  cp ../chave.priv .
+   85  openssl pkeyutl -decrypt -inkey chave.priv -in chave.cifrada -out chave.txt
+   86  openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -iter 1000 -pass file:chave.txt
+   87  cp ../chave.pub .
+   90  cp ../assinatura.sig .
+   91  openssl dgst -sha256 -verify chave.pub -signature assinatura.sig slides.pdf 
+   92  md5sum *
+   93  md5sum ../seg-criptografia.pdf 
+   94  cd ..
+   95  history > historyEx2

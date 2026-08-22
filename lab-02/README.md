@@ -56,6 +56,7 @@ Seguindo a mesma lógica da primeira parte:
 1. Baixar PDF
 1. Gerar chave simétrica
 1. Gerar chave pública/privada de criptografia
+1. Assinar PDF com chave privada
 1. Cifrar PDF com a chave simétrica
 1. Cifrar chave simétrica com a chave pública
 1. Enviar arquivo para o outro colega da dupla
