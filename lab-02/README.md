@@ -16,7 +16,7 @@ Primeiro é importante separarmos todas as partes, ficando desta forma:
 1. Gerar chave simétrica de 256 bits
 1. Cifrar PDF com essa chave
 1. Enviar arquivo para o outro colega da dupla
-1. O colega deve usar a chave simétrica
+1. O colega deve usar a chave simétrica para decifrar
 1. O colega deve verificar se o hash dos arquivos batem
 
 
@@ -37,14 +37,29 @@ Está sendo declarado o arquivo a ser cifrado em `-in seg-criptografia.pdf` e o 
 
 Agora para enviar os arquivos nós utilizamos o WhatsApp que possui criptografia de ponta a ponta, garantindo integrida e confidencialidade para nossos arquivos. Para isso criamos uma pasta "envio" e compactamos ela em ".zip".
 
-Adicionamos esse arquivo recebido na pasta "recebido", a partir dessa pasta, descompactamos o arquivo "envio.zip" e desciframos usando a chave simétrica da seguinte forma:
+Adicionamos esse arquivo recebido na pasta "recebido", a partir dessa pasta, descompactamos o arquivo "envio.zip" e deciframos usando a chave simétrica da seguinte forma:
 
 ```
 openssl enc -d -aes-256-cbc -in arquivo.cifrado -out slides.pdf -iter 1000 -pass file:chave.txt
 ```
 
-Com o `-d` estamos descifrando o `arquivo.cifrado` e queremos que o arquivo destino seja `slides.pdf`, utilizando a `chave.txt`.
+Com o `-d` estamos decifrando o `arquivo.cifrado` e queremos que o arquivo destino seja `slides.pdf`, utilizando a `chave.txt`.
 
 Para verificarmos o hash, utilizamos o comando `md5sum *` desta maneira podemos verificar se `slides.pdf` e `seg-criptografia.pdf` possuem o mesmo hash, garantindo que o conteúdo não se perdeu no caminho.
 
 ## Parte 2
+
+### Passos
+
+Seguindo a mesma lógica da primeira parte:
+
+1. Baixar PDF
+1. Gerar chave simétrica
+1. Gerar chave pública/privada de criptografia
+1. Cifrar PDF com a chave simétrica
+1. Cifrar chave simétrica com a chave pública
+1. Enviar arquivo para o outro colega da dupla
+1. O colega deve decifrar a chave simétrica com a privada
+1. O colega deve decifrar a chave simétrica
+1. O colega precisa verificar a integridade
+1. O colega necessita confirmar se a assinatura digital é valida
